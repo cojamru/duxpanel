@@ -2,7 +2,7 @@
     "name": "@cojam/duxpanel",
     "version": "1.1.0",
     "description": "React JS Draggable Panels, Dialogs, and Modals",
-    "homepage": "https://github.com/cojamru/duxpanel",
+    "homepage": "https://cojamru.github.io/duxpanel/",
     "main": "index.js",
     "repository": {
         "type": "git",

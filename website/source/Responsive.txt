@@ -1,19 +1,19 @@
 import React from 'react';
-import {DuxPanel} from 'duxpanel';
+import { DuxPanel } from 'duxpanel';
 
 export class Responsive extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {isProportionalOpen: false, isBreakpointOpen: false};
+        this.state = { isProportionalOpen: false, isBreakpointOpen: false };
     }
 
     toggleBreakpointPanel = () => {
-        this.setState({isBreakpointOpen: !this.state.isBreakpointOpen});
+        this.setState({ isBreakpointOpen: !this.state.isBreakpointOpen });
     };
 
     toggleProportionalPanel = () => {
-        this.setState({isProportionalOpen: !this.state.isProportionalOpen});
+        this.setState({ isProportionalOpen: !this.state.isProportionalOpen });
     };
 
     render() {
@@ -22,23 +22,15 @@ export class Responsive extends React.Component {
             sm: 576,
             md: 768,
             lg: 992,
-            xl: 1100
+            xl: 1100,
         };
 
         return (
             <div>
-                <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={this.toggleProportionalPanel}
-                >
+                <button type="button" className="btn btn-secondary" onClick={this.toggleProportionalPanel}>
                     Open Proportionally Sized Panel
                 </button>
-                <button
-                    type="button"
-                    className="btn btn-secondary ml-3"
-                    onClick={this.toggleBreakpointPanel}
-                >
+                <button type="button" className="btn btn-secondary ml-3" onClick={this.toggleBreakpointPanel}>
                     Open Breakpoint Sized Panel
                 </button>
 
@@ -51,11 +43,10 @@ export class Responsive extends React.Component {
                     top="10%"
                     onClose={this.toggleProportionalPanel}
                     allowDrag={false}
-                    center={false}
-                >
+                    center={false}>
                     <p>
-                        This is a proportionally sized DuxPanel.  As you resize the browser window the panel will resize
-                        to maintain a proportional size.
+                        This is a proportionally sized DuxPanel. As you resize the browser window the panel will resize to maintain a proportional
+                        size.
                     </p>
                 </DuxPanel>
 
@@ -65,12 +56,8 @@ export class Responsive extends React.Component {
                     onClose={this.toggleBreakpointPanel}
                     allowDrag={false}
                     center={true}
-                    width={breakpointWidths}
-                >
-                    <p>
-                        This panel will adjust its width based on the width of the browser window.  Try resizing your
-                        browser.
-                    </p>
+                    width={breakpointWidths}>
+                    <p>This panel will adjust its width based on the width of the browser window. Try resizing your browser.</p>
                     <div className="d-block d-sm-none">
                         <h5 className="text-primary">Breakpoint xs</h5>
                         Browser is less than 576px wide.
