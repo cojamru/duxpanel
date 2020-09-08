@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getAnimationNameHide, getAnimationNameShow, getElementPosition, isInsideRect,
-    propToPixels } from './helpers';
+import { getAnimationNameHide, getAnimationNameShow, getElementPosition, isInsideRect, propToPixels } from './helpers';
 import throttle from 'lodash.throttle';
 
 class DuxPanel extends React.Component {
@@ -12,15 +11,15 @@ class DuxPanel extends React.Component {
         this._header = null;
         this.btnDown = false;
         this.dragging = false;
-        this.timestamp = 0;  // Used to uniquely identify the panel in the stack
+        this.timestamp = 0; // Used to uniquely identify the panel in the stack
 
         const initialState = {
             showInDOM: props.show,
             backdropAnimationName: '',
-            animationName: props.show ? getAnimationNameShow(props) : ''
+            animationName: props.show ? getAnimationNameShow(props) : '',
         };
 
-        this.pos = {offsetX: 0, offsetY: 0};
+        this.pos = { offsetX: 0, offsetY: 0 };
         this.state = initialState;
 
         this.throttleMouseMove = throttle(this.mouseMove, 20);
@@ -45,14 +44,13 @@ class DuxPanel extends React.Component {
             this.addToModalStack();
             const newState = {
                 showInDOM: true,
-                animationName: getAnimationNameShow(this.props)
+                animationName: getAnimationNameShow(this.props),
             };
             if (this.props.modal) {
                 newState.backdropAnimationName = 'duxpanel-fade-in';
             }
             this.setState(newState);
-        }
-        else if (prevProps.show && !this.props.show) {
+        } else if (prevProps.show && !this.props.show) {
             // The panel was visible but is now hidden.  Unsubscribe from the
             // document's keydown event.
             document.removeEventListener('keydown', this.onKeyDown, false);
@@ -64,7 +62,9 @@ class DuxPanel extends React.Component {
             const newState = {};
             if (animationNameHide) {
                 newState.animationName = animationNameHide;
-                setTimeout(() => {this.setState({showInDOM:false})}, 250);
+                setTimeout(() => {
+                    this.setState({ showInDOM: false });
+                }, 250);
             } else {
                 newState.showInDOM = false;
             }
@@ -156,7 +156,6 @@ class DuxPanel extends React.Component {
 
     panelRef = ref => {
         if (ref && this._panel !== ref) {
-
             this._panel = ref;
             this.updatePanelPosition();
 
@@ -208,10 +207,12 @@ class DuxPanel extends React.Component {
             this.updatePanelPosition();
         }
 
-        if ((this.props.left && typeof this.props.left !== 'number') ||
+        if (
+            (this.props.left && typeof this.props.left !== 'number') ||
             (this.props.top && typeof this.props.top !== 'number') ||
             (this.props.width && typeof this.props.width !== 'number') ||
-            (this.props.height && typeof this.props.height !== 'number')) {
+            (this.props.height && typeof this.props.height !== 'number')
+        ) {
             this.forceUpdate();
         }
     };
@@ -232,17 +233,18 @@ class DuxPanel extends React.Component {
         }
 
         const panelStyle = {
-            zIndex: 11 + panelDepth * 2
+            zIndex: 11 + panelDepth * 2,
         };
 
         if (this.props.animation) {
             panelStyle.animation = this.props.animation;
-        }
-        else if (this.state.animationName) {
+        } else if (this.state.animationName) {
             panelStyle.animationDuration = '.25s';
             panelStyle.animationName = this.state.animationName;
             panelStyle.animationFillMode = 'forwards';
-            setTimeout(() => {this.setState({animationName:''})}, 500);  // clear animation name for next render
+            setTimeout(() => {
+                this.setState({ animationName: '' });
+            }, 500); // clear animation name for next render
         }
 
         if (this.props.left) panelStyle.left = propToPixels(this.props.left, window.innerWidth);
@@ -252,39 +254,31 @@ class DuxPanel extends React.Component {
 
         const backdropStyle = {
             zIndex: 10 + panelDepth * 2,
-            animation: this.state.backdropAnimationName ? `${this.state.backdropAnimationName} .25s ease-in-out 0s 1 normal forwards` : ''
+            animation: this.state.backdropAnimationName ? `${this.state.backdropAnimationName} .25s ease-in-out 0s 1 normal forwards` : '',
         };
 
         return (
             <div>
-                {this.props.modal &&
-                    <div
-                        className="duxpanel-backdrop"
-                        style={backdropStyle}
-                        onClick={this.props.clickToDismiss ? this.onBackdropClick : null}
-                    >
-                    </div>
-                }
+                {this.props.modal && (
+                    <div className="duxpanel-backdrop" style={backdropStyle} onClick={this.props.clickToDismiss ? this.onBackdropClick : null}></div>
+                )}
                 <div className="duxpanel" style={panelStyle} ref={this.panelRef}>
-                    {this.props.title &&
+                    {this.props.title && (
                         <div
-                            ref={ref => {this._header = ref}}
-                            className="duxpanel-heading"
-                        >
+                            ref={ref => {
+                                this._header = ref;
+                            }}
+                            className="duxpanel-heading">
                             {this.props.title}
-                            {this.props.allowClose && this.props.onClose &&
-                            <button type="button" className="duxpanel-close-button" onClick={this.props.onClose}>&times;</button>
-                            }
+                            {this.props.allowClose && this.props.onClose && (
+                                <button type="button" className="duxpanel-close-button" onClick={this.props.onClose}>
+                                    &times;
+                                </button>
+                            )}
                         </div>
-                    }
-                    <div className="duxpanel-body">
-                        {this.props.children}
-                    </div>
-                    {this.props.footerComponent &&
-                        <div className="duxpanel-footer">
-                            {this.props.footerComponent}
-                        </div>
-                    }
+                    )}
+                    <div className="duxpanel-body">{this.props.children}</div>
+                    {this.props.footerComponent && <div className="duxpanel-footer">{this.props.footerComponent}</div>}
                 </div>
             </div>
         );
@@ -312,7 +306,7 @@ DuxPanel.propTypes = {
     slideOutTo: PropTypes.string,
     fadeIn: PropTypes.bool,
     fadeOut: PropTypes.bool,
-    animation: PropTypes.string
+    animation: PropTypes.string,
 };
 
 DuxPanel.panelStack = [];
@@ -328,7 +322,7 @@ DuxPanel.defaultProps = {
     fadeIn: true,
     fadeOut: true,
     animation: '',
-    show: false
+    show: false,
 };
 
 export default DuxPanel;

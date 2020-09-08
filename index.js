@@ -11,5 +11,5 @@ module.exports = {
     DuxPanel: DuxPanel,
     DuxProgressDialog: DuxProgressDialog,
     DuxYesNoDialog: DuxYesNoDialog,
-    ProgressBarBS4: ProgressBarBS4
+    ProgressBarBS4: ProgressBarBS4,
 };

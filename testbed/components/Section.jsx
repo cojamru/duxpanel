@@ -8,13 +8,13 @@ export class Section extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: true
+            collapsed: true,
         };
     }
 
     toggleCollapse = () => {
         this.setState({
-            collapsed: !this.state.collapsed
+            collapsed: !this.state.collapsed,
         });
     };
 
@@ -23,26 +23,20 @@ export class Section extends React.Component {
             <div className="container mt-2">
                 <div className="row">
                     <div className="col">
-                        <div className="alert alert-secondary" onClick={this.toggleCollapse} style={{cursor:'pointer'}}>
+                        <div className="alert alert-secondary" onClick={this.toggleCollapse} style={{ cursor: 'pointer' }}>
                             <h4>
-                                { this.state.collapsed &&
-                                <FontAwesomeIcon icon={faCaretRight} className="mr-2"/>
-                                }
-                                { !this.state.collapsed &&
-                                <FontAwesomeIcon icon={faCaretDown} className="mr-2"/>
-                                }
+                                {this.state.collapsed && <FontAwesomeIcon icon={faCaretRight} className="mr-2" />}
+                                {!this.state.collapsed && <FontAwesomeIcon icon={faCaretDown} className="mr-2" />}
                                 {this.props.title}
                             </h4>
                         </div>
                     </div>
                 </div>
-                { !this.state.collapsed &&
-                <div className="row">
-                    <div className="col">
-                        {React.createElement(this.props.form)}
+                {!this.state.collapsed && (
+                    <div className="row">
+                        <div className="col">{React.createElement(this.props.form)}</div>
                     </div>
-                </div>
-                }
+                )}
             </div>
         );
     }
@@ -51,5 +45,5 @@ export class Section extends React.Component {
 Section.propTypes = {
     title: PropTypes.string.isRequired,
     form: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
 };

@@ -39,58 +39,58 @@ import ProgressDialogSource from '../source/ProgressDialog.txt';
 const topics = [
     {
         topic: 'intro',
-        html: IntroHtml
+        html: IntroHtml,
     },
     {
         topic: 'gettingstarted',
-        html: GettingStartedHtml
+        html: GettingStartedHtml,
     },
     {
         topic: 'basics',
         component: Basics,
         html: BasicsHtml,
-        source: BasicsSource
+        source: BasicsSource,
     },
     {
         topic: 'responsive',
         component: Responsive,
         html: ResponsiveHtml,
-        source: ResponsiveSource
+        source: ResponsiveSource,
     },
     {
         topic: 'animation',
         component: Animation,
         html: AnimationHtml,
-        source: AnimationSource
+        source: AnimationSource,
     },
     {
         topic: 'reference',
-        html: DuxPanelPropertiesHtml
+        html: DuxPanelPropertiesHtml,
     },
     {
         topic: 'dialog',
         component: Dialog,
         html: DialogHtml,
-        source: DialogSource
+        source: DialogSource,
     },
     {
         topic: 'okdialog',
         component: OkDialog,
         html: OkDialogHtml,
-        source: OkDialogSource
+        source: OkDialogSource,
     },
     {
         topic: 'yesnodialog',
         component: YesNoDialog,
         html: YesNoDialogHtml,
-        source: YesNoDialogSource
+        source: YesNoDialogSource,
     },
     {
         topic: 'progressdialog',
         component: ProgressDialog,
         html: ProgressDialogHtml,
-        source: ProgressDialogSource
-    }
+        source: ProgressDialogSource,
+    },
 ];
 
 export class App extends React.Component {
@@ -98,12 +98,12 @@ export class App extends React.Component {
         super(props);
 
         this.state = {
-            currentTopic: 'intro'
+            currentTopic: 'intro',
         };
     }
 
     topicClicked = topic => {
-        this.setState({currentTopic: topic});
+        this.setState({ currentTopic: topic });
     };
 
     render() {
@@ -122,8 +122,8 @@ export class App extends React.Component {
 
         return (
             <div className="container">
-                <NavBar topicClicked={this.topicClicked}/>
-                 {topicComponents}
+                <NavBar topicClicked={this.topicClicked} />
+                {topicComponents}
             </div>
         );
     }

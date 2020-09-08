@@ -25,15 +25,15 @@ class DuxOkDialog extends React.Component {
                 label: 'Ok',
                 onClick: this.onOk,
                 className: this.props.okClassName,
-                disabled: this.props.okDisabled
-            }
+                disabled: this.props.okDisabled,
+            },
         ];
 
         if (this.props.showCancel) {
             buttons.push({
                 label: 'Cancel',
                 onClick: this.onCancel,
-                className: this.props.cancelClassName
+                className: this.props.cancelClassName,
             });
         }
 
@@ -42,9 +42,12 @@ class DuxOkDialog extends React.Component {
                 {...this.props}
                 buttons={buttons}
                 onClose={this.onCancel}
-                onEscPressed={() => {if (this.props.allowEsc) this.onCancel()}}
-                onEnterPressed={() => {if (this.props.allowEnter) this.onOk()}}
-            >
+                onEscPressed={() => {
+                    if (this.props.allowEsc) this.onCancel();
+                }}
+                onEnterPressed={() => {
+                    if (this.props.allowEnter) this.onOk();
+                }}>
                 {this.props.children}
             </DuxDialog>
         );
@@ -62,7 +65,7 @@ DuxOkDialog.propTypes = {
     shouldClose: PropTypes.func,
     cancelClassName: PropTypes.string,
     okClassName: PropTypes.string,
-    okDisabled: PropTypes.bool
+    okDisabled: PropTypes.bool,
 };
 
 DuxOkDialog.defaultProps = {
@@ -73,7 +76,7 @@ DuxOkDialog.defaultProps = {
     allowEnter: true,
     cancelClassName: '',
     okClassName: '',
-    okDisabled: false
+    okDisabled: false,
 };
 
 export default DuxOkDialog;

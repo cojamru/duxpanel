@@ -9,10 +9,18 @@ export const getAnimationNameHide = props => {
     let name = '';
     if (props.slideOutTo) {
         switch (props.slideOutTo) {
-            case 'top': name = 'duxpanel-slide-out-top'; break;
-            case 'right': name = 'duxpanel-slide-out-right'; break;
-            case 'bottom': name = 'duxpanel-slide-out-bottom'; break;
-            case 'left': name = 'duxpanel-slide-out-left'; break;
+            case 'top':
+                name = 'duxpanel-slide-out-top';
+                break;
+            case 'right':
+                name = 'duxpanel-slide-out-right';
+                break;
+            case 'bottom':
+                name = 'duxpanel-slide-out-bottom';
+                break;
+            case 'left':
+                name = 'duxpanel-slide-out-left';
+                break;
         }
     } else if (props.fadeOut) {
         name = 'duxpanel-fade-out';
@@ -32,10 +40,18 @@ export const getAnimationNameShow = props => {
     let name = '';
     if (props.slideInFrom) {
         switch (props.slideInFrom) {
-            case 'top': name = 'duxpanel-slide-in-top'; break;
-            case 'right': name = 'duxpanel-slide-in-right'; break;
-            case 'bottom': name = 'duxpanel-slide-in-bottom'; break;
-            case 'left': name = 'duxpanel-slide-in-left'; break;
+            case 'top':
+                name = 'duxpanel-slide-in-top';
+                break;
+            case 'right':
+                name = 'duxpanel-slide-in-right';
+                break;
+            case 'bottom':
+                name = 'duxpanel-slide-in-bottom';
+                break;
+            case 'left':
+                name = 'duxpanel-slide-in-left';
+                break;
         }
     } else if (props.fadeIn) {
         name = 'duxpanel-fade-in';
@@ -52,14 +68,14 @@ export const getAnimationNameShow = props => {
  */
 const getElementOffset = elem => {
     if (elem === null || elem === undefined) {
-        return {top: 0, left: 0};
+        return { top: 0, left: 0 };
     }
 
     const rect = elem.getBoundingClientRect();
     const win = elem.ownerDocument.defaultView;
     return {
         top: rect.top + win.pageYOffset,
-        left: rect.left - win.pageXOffset
+        left: rect.left - win.pageXOffset,
     };
 };
 
@@ -75,12 +91,12 @@ export const getElementPosition = elem => {
 
     return {
         top: elemOffset.top,
-        left: elemOffset.left
+        left: elemOffset.left,
     };
 };
 
 export const isInsideRect = (x, y, left, top, width, height) => {
-    return (x >= left && y >= top && x <= left+width && y <= top+height);
+    return x >= left && y >= top && x <= left + width && y <= top + height;
 };
 
 /**

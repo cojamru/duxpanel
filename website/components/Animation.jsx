@@ -1,7 +1,7 @@
 import React from 'react';
 import DuxPanel from '../../src/DuxPanel';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { agate } from 'react-syntax-highlighter/styles/hljs';
+import { agate } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 export class Animation extends React.Component {
     constructor(props) {
@@ -13,38 +13,38 @@ export class Animation extends React.Component {
             bottomPanelVisible: false,
             leftPanelVisible: false,
             animPanelVisible: false,
-            animFrame: 0  // 0 is starting position (centered), 1 is frame one, 2 is frame two
+            animFrame: 0, // 0 is starting position (centered), 1 is frame one, 2 is frame two
         };
     }
 
     toggleTopPanel = () => {
         this.setState({
-            topPanelVisible: !this.state.topPanelVisible
-        })
+            topPanelVisible: !this.state.topPanelVisible,
+        });
     };
 
     toggleRightPanel = () => {
         this.setState({
-            rightPanelVisible: !this.state.rightPanelVisible
-        })
+            rightPanelVisible: !this.state.rightPanelVisible,
+        });
     };
 
     toggleBottomPanel = () => {
         this.setState({
-            bottomPanelVisible: !this.state.bottomPanelVisible
-        })
+            bottomPanelVisible: !this.state.bottomPanelVisible,
+        });
     };
 
     toggleLeftPanel = () => {
         this.setState({
-            leftPanelVisible: !this.state.leftPanelVisible
-        })
+            leftPanelVisible: !this.state.leftPanelVisible,
+        });
     };
 
     toggleAnimPanel = () => {
         this.setState({
             animPanelVisible: !this.state.animPanelVisible,
-            animFrame: 0
+            animFrame: 0,
         });
     };
 
@@ -54,7 +54,7 @@ export class Animation extends React.Component {
             nextFrame = 0;
         }
         this.setState({
-            animFrame: nextFrame
+            animFrame: nextFrame,
         });
     };
 
@@ -108,14 +108,22 @@ export class Animation extends React.Component {
         `;
 
         return (
-            <div style={{paddingBottom:25}}>
+            <div style={{ paddingBottom: 25 }}>
                 <h4>Demonstration of Entry and Exit Animations</h4>
 
                 <div>
-                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleTopPanel}>Sliding From Top</button>
-                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleRightPanel}>Sliding From Right</button>
-                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleBottomPanel}>Sliding From Bottom</button>
-                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleLeftPanel}>Sliding From Left</button>
+                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleTopPanel}>
+                        Sliding From Top
+                    </button>
+                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleRightPanel}>
+                        Sliding From Right
+                    </button>
+                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleBottomPanel}>
+                        Sliding From Bottom
+                    </button>
+                    <button type="button" className="btn btn-secondary mr-3" onClick={this.toggleLeftPanel}>
+                        Sliding From Left
+                    </button>
                 </div>
 
                 <DuxPanel
@@ -128,8 +136,7 @@ export class Animation extends React.Component {
                     allowDrag={true}
                     width="50%"
                     height="50%"
-                    top="5%"
-                >
+                    top="5%">
                     <p>This panel slides down from the top</p>
                 </DuxPanel>
 
@@ -143,8 +150,7 @@ export class Animation extends React.Component {
                     allowDrag={true}
                     width="50%"
                     height="50%"
-                    left="45%"
-                >
+                    left="45%">
                     <p>This panel slides in from the right</p>
                 </DuxPanel>
 
@@ -158,8 +164,7 @@ export class Animation extends React.Component {
                     allowDrag={true}
                     width="50%"
                     height="50%"
-                    top="45%"
-                >
+                    top="45%">
                     <p>This panel slides up from the bottom</p>
                 </DuxPanel>
 
@@ -173,19 +178,13 @@ export class Animation extends React.Component {
                     allowDrag={true}
                     width="50%"
                     height="50%"
-                    left="5%"
-                >
+                    left="5%">
                     <p>This panel slides in from the left</p>
                 </DuxPanel>
 
-                <h4 style={{marginTop:50}}>Demonstration of CSS Animation</h4>
+                <h4 style={{ marginTop: 50 }}>Demonstration of CSS Animation</h4>
 
-                <button
-                    type="button"
-                    className="btn btn-secondary"
-                    disabled={this.state.animPanelVisible}
-                    onClick={this.toggleAnimPanel}
-                >
+                <button type="button" className="btn btn-secondary" disabled={this.state.animPanelVisible} onClick={this.toggleAnimPanel}>
                     Open Panel In Starting Position
                 </button>
 
@@ -198,20 +197,20 @@ export class Animation extends React.Component {
                     width="25%"
                     height="25%"
                     center={true}
-                    animation={animFrameName}
-                >
-                    <p>{animContent}  Click the Animate button to continue.</p>
+                    animation={animFrameName}>
+                    <p>{animContent} Click the Animate button to continue.</p>
 
-                    <button type="button" className="btn btn-primary" onClick={this.toggleAnimFrame}>Animate</button>
+                    <button type="button" className="btn btn-primary" onClick={this.toggleAnimFrame}>
+                        Animate
+                    </button>
                 </DuxPanel>
 
                 <div className="alert alert-info mt-3">
-                    Click the first button to open the panel centered in the browser window.  In this starting position,
-                    dragging the window is possible.  Clicking the Animate button cycles through three positions: the
-                    starting position, and two animation keyframes.  When the panel has completed one of these two
-                    keyframes, dragging is not possible since the <code>animation</code> property of
-                    the <code>DuxPanel</code> contains contents.  Clicking the Animate button after the panel has completed
-                    keyframe two returns the panel back to a non-animated state, allowing dragging to happen again.
+                    Click the first button to open the panel centered in the browser window. In this starting position, dragging the window is
+                    possible. Clicking the Animate button cycles through three positions: the starting position, and two animation keyframes. When the
+                    panel has completed one of these two keyframes, dragging is not possible since the <code>animation</code> property of the{' '}
+                    <code>DuxPanel</code> contains contents. Clicking the Animate button after the panel has completed keyframe two returns the panel
+                    back to a non-animated state, allowing dragging to happen again.
                 </div>
 
                 <h4>Example CSS</h4>
@@ -219,7 +218,6 @@ export class Animation extends React.Component {
                 <SyntaxHighlighter language="css" style={agate}>
                     {animationCss}
                 </SyntaxHighlighter>
-
             </div>
         );
     }

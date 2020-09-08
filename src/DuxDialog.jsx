@@ -7,20 +7,20 @@ import { DialogButtonBar } from './DialogButtonBar';
 const DuxDialog = props => {
     let footer = null;
     if (props.buttons) {
-        footer = <DialogButtonBar
-            buttons={props.buttons}
-            onButton={props.onButton}
-            buttonClassName={props.buttonClassName}
-            statusMsg={props.statusMsg}
-            statusMsgClassName={props.statusMsgClassName}
-        />;
+        footer = (
+            <DialogButtonBar
+                buttons={props.buttons}
+                onButton={props.onButton}
+                buttonClassName={props.buttonClassName}
+                statusMsg={props.statusMsg}
+                statusMsgClassName={props.statusMsgClassName}
+            />
+        );
     }
 
     return (
         <DuxPanel footerComponent={footer} {...props}>
-            {props.icon &&
-            <div style={{float:'left',marginRight:10}}>{props.icon}</div>
-            }
+            {props.icon && <div style={{ float: 'left', marginRight: 10 }}>{props.icon}</div>}
             {props.children}
         </DuxPanel>
     );
@@ -28,14 +28,12 @@ const DuxDialog = props => {
 
 DuxDialog.propTypes = {
     ...DuxPanel.propTypes,
-    buttons: PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.node])
-    ),
+    buttons: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.node])),
     onButton: PropTypes.func,
     icon: PropTypes.node,
     buttonClassName: PropTypes.string,
     statusMsg: PropTypes.string,
-    statusMsgClassName: PropTypes.string
+    statusMsgClassName: PropTypes.string,
 };
 
 DuxDialog.defaultProps = {
@@ -48,7 +46,7 @@ DuxDialog.defaultProps = {
     slideInFrom: 'top',
     slideOutTo: 'top',
     statusMsg: '',
-    statusMsgClassName: ''
+    statusMsgClassName: '',
 };
 
 export default DuxDialog;

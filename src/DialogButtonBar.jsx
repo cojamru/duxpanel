@@ -10,11 +10,15 @@ export class DialogButtonBar extends React.Component {
 
     render() {
         const defaultOnClick = this.onButton;
-        let leftButtons = [], rightButtons = [];
+        let leftButtons = [],
+            rightButtons = [];
         for (let i = 0; i < this.props.buttons.length; i++) {
             let alignRight = true;
             let disabled = false;
-            let label, type='button', onClick, className = this.props.buttonClassName;
+            let label,
+                type = 'button',
+                onClick,
+                className = this.props.buttonClassName;
             if (typeof this.props.buttons[i] === 'string') {
                 label = this.props.buttons[i];
                 onClick = defaultOnClick;
@@ -37,13 +41,16 @@ export class DialogButtonBar extends React.Component {
                 }
             }
             if (label !== undefined) {
-                const button = <button
-                    key={label}
-                    className={className}
-                    style={{marginLeft: 10, marginRight: 10}}
-                    onClick={() => onClick(label)}
-                    disabled={disabled}
-                >{label}</button>
+                const button = (
+                    <button
+                        key={label}
+                        className={className}
+                        style={{ marginLeft: 10, marginRight: 10 }}
+                        onClick={() => onClick(label)}
+                        disabled={disabled}>
+                        {label}
+                    </button>
+                );
                 if (alignRight) {
                     rightButtons.push(button);
                 } else {
@@ -54,16 +61,12 @@ export class DialogButtonBar extends React.Component {
 
         return (
             <div className="duxdialogbuttonbar clearfix">
-                <div style={{width:'100%'}}>
-                    <div style={{float:'left'}}>
-                        <span className={this.props.statusMsgClassName}>
-                            {this.props.statusMsg}
-                        </span>
+                <div style={{ width: '100%' }}>
+                    <div style={{ float: 'left' }}>
+                        <span className={this.props.statusMsgClassName}>{this.props.statusMsg}</span>
                         {leftButtons}
                     </div>
-                    <div style={{float:'right'}}>
-                        {rightButtons}
-                    </div>
+                    <div style={{ float: 'right' }}>{rightButtons}</div>
                 </div>
             </div>
         );
@@ -71,16 +74,15 @@ export class DialogButtonBar extends React.Component {
 }
 
 DialogButtonBar.propTypes = {
-    buttons: PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.node])).isRequired,
+    buttons: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.node])).isRequired,
     onButton: PropTypes.func,
     buttonClassName: PropTypes.string.isRequired,
     statusMsg: PropTypes.string,
-    statusMsgClassName: PropTypes.string
+    statusMsgClassName: PropTypes.string,
 };
 
 DialogButtonBar.defaultProps = {
     buttonClassName: '',
     statusMsg: '',
-    statusMsgClassName: ''
+    statusMsgClassName: '',
 };

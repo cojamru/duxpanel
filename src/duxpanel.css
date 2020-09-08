@@ -76,7 +76,7 @@
         opacity: 0;
     }
     60% {
-        opacity: 1
+        opacity: 1;
     }
 }
 
@@ -155,7 +155,7 @@
 .duxpanel-close-button:not(:disabled):hover {
     color: #000;
     text-decoration: none;
-    opacity: .75;
+    opacity: 0.75;
 }
 
 .duxpanel-close-button:not(:disabled) {
@@ -166,4 +166,3 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-

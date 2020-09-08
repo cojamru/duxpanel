@@ -8,13 +8,13 @@ const DuxYesNoDialog = props => {
         {
             label: 'Yes',
             className: props.yesClassName,
-            onClick: props.onYes
+            onClick: props.onYes,
         },
         {
             label: 'No',
             className: props.noClassName,
-            onClick: props.onNo
-        }
+            onClick: props.onNo,
+        },
     ];
 
     return (
@@ -29,12 +29,12 @@ DuxYesNoDialog.propTypes = {
     onYes: PropTypes.func.isRequired,
     onNo: PropTypes.func.isRequired,
     yesClassName: PropTypes.string,
-    noClassName: PropTypes.string
+    noClassName: PropTypes.string,
 };
 
 DuxYesNoDialog.defaultProps = {
     yesClassName: '',
-    noClassName: ''
+    noClassName: '',
 };
 
 export default DuxYesNoDialog;

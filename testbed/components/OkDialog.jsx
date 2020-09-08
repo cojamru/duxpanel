@@ -6,7 +6,7 @@ export class OkDialog extends React.Component {
         super(props);
 
         this.state = {
-            isDialogOpen: false
+            isDialogOpen: false,
         };
     }
 
@@ -24,7 +24,7 @@ export class OkDialog extends React.Component {
 
     toggleDialog = () => {
         this.setState({
-            isDialogOpen: !this.state.isDialogOpen
+            isDialogOpen: !this.state.isDialogOpen,
         });
     };
 
@@ -39,15 +39,15 @@ export class OkDialog extends React.Component {
                     onCancel={this.onCancel}
                     shouldClose={this.shouldClose}
                     okClassName="btn btn-primary"
-                    cancelClassName="btn btn-warning"
-                >
-                    I Agree: <input type="checkbox" ref={ref => this._shouldClose=ref}/>
+                    cancelClassName="btn btn-warning">
+                    I Agree: <input type="checkbox" ref={ref => (this._shouldClose = ref)} />
                     <p>Your order is ready to submit.</p>
                 </DuxOkDialog>
 
-                <button type="button" className="btn btn-default" onClick={this.toggleDialog}>Open Dialog</button>
+                <button type="button" className="btn btn-default" onClick={this.toggleDialog}>
+                    Open Dialog
+                </button>
             </div>
         );
     }
 }
-

@@ -1,82 +1,64 @@
 <h2>DuxDialog</h2>
 
 <p>
-    <code>DuxDialog</code> is a specialized version of <code>DuxPanel</code> with some defaults typically used in
-    dialogs as well as buttons for the user to interact with the dialog.  If all you need is a dialog with typical
-    buttons, take a look at <code>DuxOkDialog</code> or <code>DuxYesNoDialog</code>.
-    The following DuxPanel properties
-    are recognized by DuxDialog.
+    <code>DuxDialog</code> is a specialized version of <code>DuxPanel</code> with some defaults typically used in dialogs as well as buttons for the
+    user to interact with the dialog. If all you need is a dialog with typical buttons, take a look at <code>DuxOkDialog</code> or
+    <code>DuxYesNoDialog</code>. The following DuxPanel properties are recognized by DuxDialog.
 </p>
 
 <p>
-    By default, DuxDialog sets a few sensible properties in DuxPanel.  The close button is not shown in the title bar.
-    Also, the dialog cannot be dismissed by clicking in the backdrop outside the dialog.  The dialog will slide in
-    from the top and slide out the top and position itself centered, 50 pixels from the top.  All of these can be
-    overridden if desired.
+    By default, DuxDialog sets a few sensible properties in DuxPanel. The close button is not shown in the title bar. Also, the dialog cannot be
+    dismissed by clicking in the backdrop outside the dialog. The dialog will slide in from the top and slide out the top and position itself
+    centered, 50 pixels from the top. All of these can be overridden if desired.
 </p>
 
 <table class="table">
     <thead>
-    <tr>
-        <th>Property</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Property</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>buttons</td>
-        <td>(none)</td>
-        <td>
-            An array of buttons to be displayed along the bottom of the dialog. See the buttons topic, below.
-        </td>
-    </tr>
-    <tr>
-        <td>onButton</td>
-        <td>(none)</td>
-        <td>
-            A function to call when the user clicks on a button in the dialog.  The function receives the label
-            of the button.
-        </td>
-    </tr>
-    <tr>
-        <td>icon</td>
-        <td>(none)</td>
-        <td>
-            This is a React component displayed along the left side of the dialog with a 10 pixel right margin.
-        </td>
-    </tr>
-    <tr>
-        <td>buttonClassName</td>
-        <td>(none)</td>
-        <td>
-            The default CSS class(es) supplied to the dialog's buttons.  See the buttons topic, below.
-        </td>
-    </tr>
-    <tr>
-        <td>statusMsg</td>
-        <td>(none)</td>
-        <td>
-            If present, this string will be displayed in a <code>&lt;span&gt;</code> tag, left-aligned in
-            the button bar.
-        </td>
-    </tr>
-    <tr>
-        <td>statusMsgClassName</td>
-        <td>(none)</td>
-        <td>
-            The class name(s) applied to the <code>&lt;span&gt;</code> tag for the status message.
-        </td>
-    </tr>
+        <tr>
+            <td>buttons</td>
+            <td>(none)</td>
+            <td>An array of buttons to be displayed along the bottom of the dialog. See the buttons topic, below.</td>
+        </tr>
+        <tr>
+            <td>onButton</td>
+            <td>(none)</td>
+            <td>A function to call when the user clicks on a button in the dialog. The function receives the label of the button.</td>
+        </tr>
+        <tr>
+            <td>icon</td>
+            <td>(none)</td>
+            <td>This is a React component displayed along the left side of the dialog with a 10 pixel right margin.</td>
+        </tr>
+        <tr>
+            <td>buttonClassName</td>
+            <td>(none)</td>
+            <td>The default CSS class(es) supplied to the dialog's buttons. See the buttons topic, below.</td>
+        </tr>
+        <tr>
+            <td>statusMsg</td>
+            <td>(none)</td>
+            <td>If present, this string will be displayed in a <code>&lt;span&gt;</code> tag, left-aligned in the button bar.</td>
+        </tr>
+        <tr>
+            <td>statusMsgClassName</td>
+            <td>(none)</td>
+            <td>The class name(s) applied to the <code>&lt;span&gt;</code> tag for the status message.</td>
+        </tr>
     </tbody>
 </table>
 
 <h4>Dialog Buttons</h4>
 
 <p>
-    The dialog buttons are specified using an array.  Each button in the array can be specified with a string (the
-    button label), or a JavaScript object that specifies additional properties, or as a React component.  Take a look
-    at this example.
+    The dialog buttons are specified using an array. Each button in the array can be specified with a string (the button label), or a JavaScript
+    object that specifies additional properties, or as a React component. Take a look at this example.
 </p>
 
 <pre>
@@ -92,45 +74,44 @@
 </pre>
 
 <p>
-    By default, buttons are evenly spaced along the bottom of the dialog, aligned to the right.  Buttons specified
-    as just a button label or button objects that do not specify a CSS class use the class from the
-    <strong>buttonClassName</strong> property.  Button objects can use the following properties.
+    By default, buttons are evenly spaced along the bottom of the dialog, aligned to the right. Buttons specified as just a button label or button
+    objects that do not specify a CSS class use the class from the
+    <strong>buttonClassName</strong> property. Button objects can use the following properties.
 </p>
 
 <table class="table">
     <thead>
-    <tr>
-        <th>Property</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Property</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>label</td>
-        <td>(required)</td>
-        <td>The button label</td>
-    </tr>
-    <tr>
-        <td>onClick</td>
-        <td>(none)</td>
-        <td>
-            Function to call when the button is clicked. If not specified, the DuxDialog <strong>onButton</strong>
-            function is called.
-        </td>
-    </tr>
-    <tr>
-        <td>className</td>
-        <td>(none)</td>
-        <td>CSS class(es) for the <code>&lt;button&gt;</code> component</td>
-    </tr>
-    <tr>
-        <td>align</td>
-        <td>left</td>
-        <td>Align the button along the bottom left or bottom right of the dialog</td>
-    </tr>
+        <tr>
+            <td>label</td>
+            <td>(required)</td>
+            <td>The button label</td>
+        </tr>
+        <tr>
+            <td>onClick</td>
+            <td>(none)</td>
+            <td>
+                Function to call when the button is clicked. If not specified, the DuxDialog <strong>onButton</strong>
+                function is called.
+            </td>
+        </tr>
+        <tr>
+            <td>className</td>
+            <td>(none)</td>
+            <td>CSS class(es) for the <code>&lt;button&gt;</code> component</td>
+        </tr>
+        <tr>
+            <td>align</td>
+            <td>left</td>
+            <td>Align the button along the bottom left or bottom right of the dialog</td>
+        </tr>
     </tbody>
 </table>
 
 <h4>Example</h4>
-

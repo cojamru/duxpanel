@@ -6,7 +6,7 @@ export class YesNoDialog extends React.Component {
         super(props);
 
         this.state = {
-            isDialogOpen: false
+            isDialogOpen: false,
         };
     }
 
@@ -20,7 +20,7 @@ export class YesNoDialog extends React.Component {
 
     toggleDialog = () => {
         this.setState({
-            isDialogOpen: !this.state.isDialogOpen
+            isDialogOpen: !this.state.isDialogOpen,
         });
     };
 
@@ -33,12 +33,13 @@ export class YesNoDialog extends React.Component {
                     onYes={this.onYes}
                     onNo={this.onNo}
                     yesClassName="btn btn-warning"
-                    noClassName="btn btn-primary"
-                >
+                    noClassName="btn btn-primary">
                     Are you sure you want to delete the record?
                 </DuxYesNoDialog>
 
-                <button type="button" className="btn btn-default" onClick={this.toggleDialog}>Open Dialog</button>
+                <button type="button" className="btn btn-default" onClick={this.toggleDialog}>
+                    Open Dialog
+                </button>
             </div>
         );
     }

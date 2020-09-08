@@ -6,16 +6,16 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'website/build'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
     },
     devServer: {
         inline: true,
         contentBase: './website/build',
         port: 3000,
-        historyApiFallback: true
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -24,22 +24,18 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['env', 'stage-0', 'react']
-                }
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                },
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                loader: 'style-loader!css-loader',
             },
             {
                 test: /(\.html|\.txt)$/,
-                loader: 'raw-loader'
-            }
-        ]
+                loader: 'raw-loader',
+            },
+        ],
     },
-    plugins: [
-        new CopyWebpackPlugin([
-            {from: 'src/duxpanel.css', to: 'duxpanel.css', flatten:true}
-        ])
-    ]
+    plugins: [new CopyWebpackPlugin({ patterns: [{ from: 'src/duxpanel.css', to: 'duxpanel.css', flatten: true }] })],
 };

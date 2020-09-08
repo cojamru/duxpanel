@@ -7,7 +7,7 @@ export class OkDialog extends React.Component {
 
         this.state = {
             isDialogOpen: false,
-            showAgreeMsg: false
+            showAgreeMsg: false,
         };
     }
 
@@ -21,7 +21,7 @@ export class OkDialog extends React.Component {
 
     shouldClose = () => {
         if (!this._shouldClose.checked) {
-            this.setState({showAgreeMsg: true});
+            this.setState({ showAgreeMsg: true });
         }
         return this._shouldClose.checked;
     };
@@ -29,7 +29,7 @@ export class OkDialog extends React.Component {
     toggleDialog = () => {
         this.setState({
             isDialogOpen: !this.state.isDialogOpen,
-            showAgreeMsg: false
+            showAgreeMsg: false,
         });
     };
 
@@ -45,16 +45,15 @@ export class OkDialog extends React.Component {
                     onCancel={this.onCancel}
                     shouldClose={this.shouldClose}
                     okClassName="btn btn-primary"
-                    cancelClassName="btn btn-warning"
-                >
-                    I Agree: <input type="checkbox" ref={ref => this._shouldClose=ref}/>
+                    cancelClassName="btn btn-warning">
+                    I Agree: <input type="checkbox" ref={ref => (this._shouldClose = ref)} />
                     <p>Your order is ready to submit.</p>
-                    {this.state.showAgreeMsg &&
-                    <p className="text-danger">You must agree to the terms</p>
-                    }
+                    {this.state.showAgreeMsg && <p className="text-danger">You must agree to the terms</p>}
                 </DuxOkDialog>
 
-                <button type="button" className="btn btn-secondary" onClick={this.toggleDialog}>Open Dialog</button>
+                <button type="button" className="btn btn-secondary" onClick={this.toggleDialog}>
+                    Open Dialog
+                </button>
             </div>
         );
     }
