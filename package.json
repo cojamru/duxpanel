@@ -24,10 +24,21 @@
         "website": "./node_modules/.bin/webpack-dev-server --env=website",
         "website-dist": "./node_modules/.bin/webpack --env=website-dist",
         "prepare": "npm run website-dist && babel ./src --out-dir ./lib --source-maps --presets @babel/preset-env,@babel/preset-react --plugins babel-plugin-add-module-exports,@babel/plugin-proposal-class-properties",
-        "prettier": "prettier --write **/*.{html,json,js,jsx,ts,tsx,css,scss}"
+        "prettier": "prettier --write **/*.{html,json,js,jsx,ts,tsx,css,scss}",
+        "lint-staged": "lint-staged"
     },
     "author": "Ken Schenke",
     "license": "MIT",
+    "lint-staged": {
+        "*.{html,json,js,jsx,ts,tsx,css,scss}": [
+            "prettier --write"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint-staged"
+        }
+    },
     "dependencies": {
         "lodash.throttle": "4.1.1",
         "prop-types": "15.7.2"
@@ -46,10 +57,12 @@
         "babel-plugin-add-module-exports": "1.0.2",
         "copy-webpack-plugin": "6.1.0",
         "css-loader": "4.2.2",
+        "husky": "4.3.0",
         "jest": "26.4.2",
+        "lint-staged": "10.3.0",
         "mini-css-extract-plugin": "0.11.0",
         "optimize-css-assets-webpack-plugin": "5.0.4",
-        "prettier": "^2.1.1",
+        "prettier": "2.1.1",
         "raw-loader": "4.0.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",

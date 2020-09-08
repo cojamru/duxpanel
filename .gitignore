@@ -1,5 +1,4 @@
 .idea
-.vscode
 lib
 duxpanel*.tgz
 node_modules
