@@ -1,6 +1,6 @@
 {
     "name": "@cojam/duxpanel",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "description": "React JS Draggable Panels, Dialogs, and Modals",
     "homepage": "https://github.com/cojamru/duxpanel",
     "main": "index.js",
@@ -23,6 +23,7 @@
         "testbed": "./node_modules/.bin/webpack-dev-server --env=testbed",
         "website": "./node_modules/.bin/webpack-dev-server --env=website",
         "website-dist": "./node_modules/.bin/webpack --env=website-dist",
+        "website-deploy": "npm run website-dist && gh-pages -d ./website/dist",
         "prepare": "npm run website-dist && babel ./src --out-dir ./lib --source-maps --presets @babel/preset-env,@babel/preset-react --plugins babel-plugin-add-module-exports,@babel/plugin-proposal-class-properties",
         "prettier": "prettier --write **/*.{html,json,js,jsx,ts,tsx,css,scss}",
         "lint-staged": "lint-staged"
@@ -44,10 +45,10 @@
         "prop-types": "15.7.2"
     },
     "devDependencies": {
-        "@babel/cli": "^7.11.6",
-        "@babel/plugin-proposal-class-properties": "^7.10.4",
-        "@babel/preset-env": "^7.11.5",
-        "@babel/preset-react": "^7.10.4",
+        "@babel/cli": "7.11.6",
+        "@babel/plugin-proposal-class-properties": "7.10.4",
+        "@babel/preset-env": "7.11.5",
+        "@babel/preset-react": "7.10.4",
         "@fortawesome/fontawesome": "1.1.8",
         "@fortawesome/fontawesome-free-solid": "5.0.13",
         "@fortawesome/fontawesome-svg-core": "1.2.30",
@@ -57,6 +58,7 @@
         "babel-plugin-add-module-exports": "1.0.2",
         "copy-webpack-plugin": "6.1.0",
         "css-loader": "4.2.2",
+        "gh-pages": "3.1.0",
         "husky": "4.3.0",
         "jest": "26.4.2",
         "lint-staged": "10.3.0",
