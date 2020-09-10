@@ -6,7 +6,7 @@ import IntroHtml from '../html/Intro.html';
 
 import GettingStartedHtml from '../html/GettingStarted.html';
 
-import { Basics } from '../components/Basics';
+import { Basics } from './Basics';
 import BasicsHtml from '../html/Basics.html';
 import BasicsSource from '../source/Basics.txt';
 
@@ -14,7 +14,7 @@ import { Responsive } from './Responsive';
 import ResponsiveHtml from '../html/Responsive.html';
 import ResponsiveSource from '../source/Responsive.txt';
 
-import { Animation } from '../components/Animation';
+import { Animation } from './Animation';
 import AnimationHtml from '../html/Animation.html';
 import AnimationSource from '../source/Animation.txt';
 
