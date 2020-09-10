@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: './website/index.tsx',
     mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'website/build'),
         filename: 'bundle.js',

@@ -5,7 +5,7 @@
     "description": "React JS Draggable Panels, Dialogs, and Modals",
     "homepage": "https://cojamru.github.io/duxpanel/",
     "license": "MIT",
-    "main": "index.js",
+    "main": "lib/main.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/cojamru/duxpanel"
@@ -22,7 +22,7 @@
     ],
     "scripts": {
         "test": "jest",
-        "build": "tsc",
+        "build": "webpack --env=build",
         "testbed": "webpack-dev-server --env=testbed",
         "website": "webpack-dev-server --env=website",
         "website-dist": "webpack --env=website-dist",

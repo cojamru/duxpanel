@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: './testbed/index.tsx',
     mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'testbed/build'),
         filename: 'bundle.js',
@@ -39,5 +40,5 @@ module.exports = {
             },
         ],
     },
-    plugins: [new CopyWebpackPlugin([{ from: 'src/duxpanel.css', to: 'duxpanel.css', flatten: true }])],
+    plugins: [new CopyWebpackPlugin({ patterns: [{ from: 'src/duxpanel.css', to: 'duxpanel.css', flatten: true }] })],
 };
