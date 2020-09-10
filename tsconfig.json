@@ -16,7 +16,7 @@
         "sourceMap": true,
         "noEmit": false,
         "jsx": "react",
-        "typeRoots": ["src/typings", "node_modules/@types"]
+        "typeRoots": ["website/typings", "node_modules/@types"]
     },
-    "include": ["src"]
+    "include": ["src", "website", "testbed"]
 }
