@@ -1,176 +1,125 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import DuxPanel from '../../src/DuxPanel';
 
-export class PanelStack extends React.Component {
-    constructor(props) {
-        super(props);
+export const PanelStack: React.FC = () => {
+    const [OpenPanels, setOpenPanels] = useState<number>(0);
 
-        this.state = {
-            openPanels: 0,
-        };
-        setTimeout(this.openPanel, 100);
+    const EnterPanelRef1 = useRef<HTMLParagraphElement>(null);
+    const EnterPanelRef2 = useRef<HTMLParagraphElement>(null);
+    const EnterPanelRef3 = useRef<HTMLParagraphElement>(null);
+    const EnterPanelRef4 = useRef<HTMLParagraphElement>(null);
 
-        this.escapeElems = [null, null, null, null];
-        this.enterElems = [null, null, null, null];
-    }
+    useEffect(() => {
+        setTimeout(openPanel, 100);
+    }, []);
 
-    closePanel = () => {
-        this.setState({ openPanels: this.state.openPanels - 1 });
+    const closePanel = () => {
+        setOpenPanels(OpenPanels - 1);
     };
 
-    enterPressed = num => {
-        this.enterElems[num].style.display = 'block';
-        setTimeout(() => {
-            this.enterElems[num].style.display = 'none';
-        }, 1000);
-    };
-
-    escapePressed = num => {
-        this.escapeElems[num].style.display = 'block';
-        setTimeout(() => {
-            this.escapeElems[num].style.display = 'none';
-        }, 1000);
-    };
-
-    openPanel = () => {
-        if (this.state.openPanels >= 4) {
+    const openPanel = () => {
+        if (OpenPanels >= 4) {
             return;
         }
-        this.setState({ openPanels: this.state.openPanels + 1 });
-        setTimeout(this.openPanel, 1000);
+        setOpenPanels(OpenPanels + 1);
+        setTimeout(openPanel, 1000);
     };
 
-    render() {
-        return (
-            <div>
-                <DuxPanel
-                    show={this.state.openPanels > 0}
-                    title="First Panel"
-                    onClose={this.closePanel}
-                    onEnterPressed={() => {
-                        this.enterPressed(0);
-                    }}
-                    onEscPressed={() => {
-                        this.escapePressed(0);
-                    }}
-                    top="5%"
-                    left="5%"
-                    width="40%"
-                    height="40%">
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.enterElems[0] = ref;
-                        }}>
-                        Enter Pressed
-                    </p>
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.escapeElems[0] = ref;
-                        }}>
-                        Escape Pressed
-                    </p>
-                </DuxPanel>
+    const enterPressed = (num: number, ref: React.RefObject<HTMLParagraphElement>) => {
+        if (ref.current) {
+            ref.current.style.display = 'block';
+        }
+        setTimeout(() => {
+            if (ref.current) {
+                ref.current.style.display = 'none';
+            }
+        }, 1000);
+    };
 
-                <DuxPanel
-                    show={this.state.openPanels > 1}
-                    title="Second Panel"
-                    onClose={this.closePanel}
-                    onEnterPressed={() => {
-                        this.enterPressed(1);
-                    }}
-                    onEscPressed={() => {
-                        this.escapePressed(1);
-                    }}
-                    top="5%"
-                    left="55%"
-                    width="40%"
-                    height="40%">
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.enterElems[1] = ref;
-                        }}>
-                        Enter Pressed
-                    </p>
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.escapeElems[1] = ref;
-                        }}>
-                        Escape Pressed
-                    </p>
-                </DuxPanel>
+    const escapePressed = (num: number, ref: React.RefObject<HTMLParagraphElement>) => {
+        if (ref.current) {
+            ref.current.style.display = 'block';
+        }
+        setTimeout(() => {
+            if (ref.current) {
+                ref.current.style.display = 'none';
+            }
+        }, 1000);
+    };
 
-                <DuxPanel
-                    show={this.state.openPanels > 2}
-                    title="Third Panel"
-                    onClose={this.closePanel}
-                    onEnterPressed={() => {
-                        this.enterPressed(2);
-                    }}
-                    onEscPressed={() => {
-                        this.escapePressed(2);
-                    }}
-                    top="55%"
-                    left="5%"
-                    width="40%"
-                    height="40%">
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.enterElems[2] = ref;
-                        }}>
-                        Enter Pressed
-                    </p>
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.escapeElems[2] = ref;
-                        }}>
-                        Escape Pressed
-                    </p>
-                </DuxPanel>
+    return (
+        <div>
+            <DuxPanel
+                show={OpenPanels > 0}
+                title="First Panel"
+                onClose={closePanel}
+                onEnterPressed={() => enterPressed(0, EnterPanelRef1)}
+                onEscPressed={() => escapePressed(0, EnterPanelRef1)}
+                top="5%"
+                left="5%"
+                width="40%"
+                height="40%">
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef1}>
+                    Enter Pressed
+                </p>
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef1}>
+                    Escape Pressed
+                </p>
+            </DuxPanel>
 
-                <DuxPanel
-                    show={this.state.openPanels > 3}
-                    title="Fourth Panel"
-                    onClose={this.closePanel}
-                    onEnterPressed={() => {
-                        this.enterPressed(3);
-                    }}
-                    onEscPressed={() => {
-                        this.escapePressed(3);
-                    }}
-                    top="55%"
-                    left="55%"
-                    width="40%"
-                    height="40%">
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.enterElems[3] = ref;
-                        }}>
-                        Enter Pressed
-                    </p>
-                    <p
-                        className="text-primary"
-                        style={{ display: 'none' }}
-                        ref={ref => {
-                            this.escapeElems[3] = ref;
-                        }}>
-                        Escape Pressed
-                    </p>
-                </DuxPanel>
-            </div>
-        );
-    }
-}
+            <DuxPanel
+                show={OpenPanels > 1}
+                title="Second Panel"
+                onClose={closePanel}
+                onEnterPressed={() => enterPressed(1, EnterPanelRef2)}
+                onEscPressed={() => escapePressed(1, EnterPanelRef2)}
+                top="5%"
+                left="55%"
+                width="40%"
+                height="40%">
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef2}>
+                    Enter Pressed
+                </p>
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef2}>
+                    Escape Pressed
+                </p>
+            </DuxPanel>
+
+            <DuxPanel
+                show={OpenPanels > 2}
+                title="Third Panel"
+                onClose={closePanel}
+                onEnterPressed={() => enterPressed(2, EnterPanelRef3)}
+                onEscPressed={() => escapePressed(2, EnterPanelRef3)}
+                top="55%"
+                left="5%"
+                width="40%"
+                height="40%">
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef3}>
+                    Enter Pressed
+                </p>
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef3}>
+                    Escape Pressed
+                </p>
+            </DuxPanel>
+
+            <DuxPanel
+                show={OpenPanels > 3}
+                title="Fourth Panel"
+                onClose={closePanel}
+                onEnterPressed={() => enterPressed(3, EnterPanelRef4)}
+                onEscPressed={() => escapePressed(3, EnterPanelRef4)}
+                top="55%"
+                left="55%"
+                width="40%"
+                height="40%">
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef4}>
+                    Enter Pressed
+                </p>
+                <p className="text-primary" style={{ display: 'none' }} ref={EnterPanelRef4}>
+                    Escape Pressed
+                </p>
+            </DuxPanel>
+        </div>
+    );
+};
