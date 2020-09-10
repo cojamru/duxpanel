@@ -104,16 +104,7 @@ const Topics: TopicType[] = [
 export const App: React.FC = () => {
     const [CurrentTopic, setCurrentTopic] = useState<string>('intro');
 
-    const TopicComponents = Topics.map(topic => {
-        <Topic
-            show={topic.topic === CurrentTopic}
-            key={topic.topic}
-            topic={topic.topic}
-            component={topic.component}
-            source={topic.source}
-            html={topic.html}
-        />;
-    });
+    const TopicComponents = Topics.map(topic => <Topic key={topic.topic} show={topic.topic === CurrentTopic} {...{ ...topic }} />);
 
     const topicClicked = (topic: string) => setCurrentTopic(topic);
 
