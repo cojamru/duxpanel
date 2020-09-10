@@ -1,9 +1,14 @@
 /.idea
+/.vscode
 /duxpanel*.tgz
-/.babelrc
 .gitignore
+.prettierignore
 /src
 /node_modules
+.prettierrc.json
 __test__
 /testbed
+/website
+tsconfig.json
 webpack.*.js
+tsconfig.*.js
