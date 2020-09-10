@@ -3,13 +3,12 @@
 /duxpanel*.tgz
 .gitignore
 .prettierignore
-/src
 /node_modules
 .prettierrc.json
 __test__
 /testbed
 /website
 tsconfig.json
-gulpfile.js
+tsconfig.*.json
 webpack.*.js
-tsconfig.*.js
+gulpfile.js
