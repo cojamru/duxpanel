@@ -2,18 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    entry: './website/index.tsx',
+    context: path.resolve(__dirname, './src/'),
     mode: 'production',
     output: {
-        path: path.resolve(__dirname, 'website/dist'),
-        filename: 'bundle.js',
+        path: path.resolve(__dirname, './src/'),
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -25,13 +23,6 @@ module.exports = {
             filename: 'duxpanel.css',
         }),
         new OptimizeCSSAssetsPlugin({}),
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: './website/build/index.html', flatten: true },
-                { from: './website/build/styles.css', flatten: true },
-                { from: './website/build/duxpanel.png', flatten: true },
-            ],
-        }),
     ],
     optimization: {
         minimize: true,
@@ -44,15 +35,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'ts-loader',
-                    options: {
-                        configFile: path.resolve(__dirname, 'tsconfig.website.json'),
-                    },
                 },
-            },
-            {
-                test: /(\.html|\.txt)$/,
-                loader: 'raw-loader',
-                exclude: /(mindex.html)/,
             },
             {
                 test: /\.css$/,

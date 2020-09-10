@@ -1,8 +1,10 @@
 {
     "name": "@cojam/duxpanel",
+    "author": "Ken Schenke",
     "version": "1.1.0",
     "description": "React JS Draggable Panels, Dialogs, and Modals",
     "homepage": "https://cojamru.github.io/duxpanel/",
+    "license": "MIT",
     "main": "index.js",
     "repository": {
         "type": "git",
@@ -20,15 +22,15 @@
     ],
     "scripts": {
         "test": "jest",
-        "testbed": "./node_modules/.bin/webpack-dev-server --env=testbed",
-        "website": "./node_modules/.bin/webpack-dev-server --env=website",
-        "website-dist": "./node_modules/.bin/webpack --env=website-dist",
+        "build": "tsc",
+        "testbed": "webpack-dev-server --env=testbed",
+        "website": "webpack-dev-server --env=website",
+        "website-dist": "webpack --env=website-dist",
         "website-deploy": "npm run website-dist && gh-pages -d ./website/dist",
+        "prepare": "npm run build",
         "prettier": "prettier --write **/*.{html,json,js,jsx,ts,tsx,css,scss}",
         "lint-staged": "lint-staged"
     },
-    "author": "Ken Schenke",
-    "license": "MIT",
     "lint-staged": {
         "*.{html,json,js,jsx,ts,tsx,css,scss}": [
             "prettier --write"

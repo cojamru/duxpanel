@@ -24,6 +24,9 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'ts-loader',
+                    options: {
+                        configFile: path.resolve(__dirname, 'tsconfig.website.json'),
+                    },
                 },
             },
             {
