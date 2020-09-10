@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './website/index.jsx',
+    entry: './website/index.tsx',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'website/build'),

@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './testbed/index.jsx',
+    entry: './testbed/index.tsx',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'testbed/build'),

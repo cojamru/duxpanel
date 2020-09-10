@@ -5,7 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './website/index.jsx',
+    entry: './website/index.tsx',
     mode: 'production',
     output: {
         path: path.resolve(__dirname, './website/dist'),
