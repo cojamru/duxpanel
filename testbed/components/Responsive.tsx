@@ -1,8 +1,14 @@
 import React from 'react';
 import DuxPanel from '../../src/DuxPanel';
 
-export class Responsive extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    isPanelOpen: boolean;
+    width: number | string;
+};
+
+export class Responsive extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {

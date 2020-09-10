@@ -1,7 +1,8 @@
 import React from 'react';
-import DuxPanel from '../../src/DuxPanel';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { agate } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+import DuxPanel from '../../src/DuxPanel';
 
 type PropsType = {};
 type StateType = {

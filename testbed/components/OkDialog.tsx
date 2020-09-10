@@ -1,53 +1,52 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+
 import DuxOkDialog from '../../src/DuxOkDialog';
 
-export class OkDialog extends React.Component {
-    constructor(props) {
-        super(props);
+export const OkDialog: React.FC = () => {
+    const [IsDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+    const [ShowAgreeMsg, setShowAgreeMsg] = useState<boolean>(false);
 
-        this.state = {
-            isDialogOpen: false,
-        };
-    }
+    const ShouldCloseRef = useRef<HTMLInputElement>(null);
 
-    onCancel = () => {
-        this.toggleDialog();
+    const toggleDialog = () => {
+        setIsDialogOpen(!IsDialogOpen);
+        setShowAgreeMsg(false);
     };
 
-    onOk = () => {
-        this.toggleDialog();
+    const onCancel = () => toggleDialog;
+    const onOk = () => toggleDialog;
+
+    const shouldClose = (): boolean => {
+        if (ShouldCloseRef.current) {
+            if (!ShouldCloseRef.current.checked) {
+                setShowAgreeMsg(true);
+            }
+
+            return ShouldCloseRef.current.checked;
+        } else {
+            return false;
+        }
     };
 
-    shouldClose = () => {
-        return this._shouldClose.checked;
-    };
+    return (
+        <div>
+            <DuxOkDialog
+                show={IsDialogOpen}
+                title="Ok Dialog Title"
+                showCancel={true}
+                onOk={onOk}
+                onCancel={onCancel}
+                shouldClose={shouldClose}
+                okClassName="btn btn-primary"
+                cancelClassName="btn btn-warning">
+                I Agree: <input type="checkbox" ref={ShouldCloseRef} />
+                <p>Your order is ready to submit.</p>
+                {ShowAgreeMsg && <p className="text-danger">You must agree to the terms</p>}
+            </DuxOkDialog>
 
-    toggleDialog = () => {
-        this.setState({
-            isDialogOpen: !this.state.isDialogOpen,
-        });
-    };
-
-    render() {
-        return (
-            <div>
-                <DuxOkDialog
-                    show={this.state.isDialogOpen}
-                    title="Ok Dialog Title"
-                    showCancel={true}
-                    onOk={this.onOk}
-                    onCancel={this.onCancel}
-                    shouldClose={this.shouldClose}
-                    okClassName="btn btn-primary"
-                    cancelClassName="btn btn-warning">
-                    I Agree: <input type="checkbox" ref={ref => (this._shouldClose = ref)} />
-                    <p>Your order is ready to submit.</p>
-                </DuxOkDialog>
-
-                <button type="button" className="btn btn-default" onClick={this.toggleDialog}>
-                    Open Dialog
-                </button>
-            </div>
-        );
-    }
-}
+            <button type="button" className="btn btn-default" onClick={toggleDialog}>
+                Open Dialog
+            </button>
+        </div>
+    );
+};

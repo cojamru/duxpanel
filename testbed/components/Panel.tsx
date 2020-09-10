@@ -1,8 +1,19 @@
 import React from 'react';
+
 import DuxPanel from '../../src/DuxPanel';
 
-export class Panel extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    isPanelOpen: boolean;
+    allowClose: boolean;
+    modal: boolean;
+    allowDrag: boolean;
+    clickToDismiss: boolean;
+    center: boolean;
+};
+
+export class Panel extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {

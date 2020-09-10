@@ -1,8 +1,15 @@
 import React from 'react';
+
 import DuxPanel from '../../src/DuxPanel';
 
-export class Animation extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    animationLevel: number;
+    animation: string;
+};
+
+export class Animation extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
@@ -12,14 +19,17 @@ export class Animation extends React.Component {
     }
 
     toggleAnimation = () => {
-        let newLevel;
+        let newLevel: number;
         switch (this.state.animationLevel) {
             case -1:
                 newLevel = 0;
                 break;
+
             case 0:
                 newLevel = 1;
                 break;
+
+            default:
             case 1:
                 newLevel = 0;
                 break;

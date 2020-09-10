@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Section } from './Section';
 import { Panel } from './Panel';
 import { Responsive } from './Responsive';
@@ -10,12 +11,12 @@ import { YesNoDialog } from './YesNoDialog';
 
 export const App = () => (
     <div>
-        <Section title="Panel" form={Panel} name="panel" />
-        <Section title="Responsive" form={Responsive} name="responsive" />
-        <Section title="Animation" form={Animation} name="animation" />
-        <Section title="Panel Stack" form={PanelStack} name="panelstack" />
-        <Section title="Dialog" form={Dialog} name="dialog" />
-        <Section title="Ok Dialog" form={OkDialog} name="okdialog" />
-        <Section title="Yes No Dialog" form={YesNoDialog} name="yesnodialog" />
+        <Section title="Panel" name="panel" form={<Panel />} />
+        <Section title="Responsive" name="responsive" form={<Responsive />} />
+        <Section title="Animation" name="animation" form={<Animation />} />
+        <Section title="Panel Stack" name="panelstack" form={<PanelStack />} />
+        <Section title="Dialog" name="dialog" form={<Dialog />} />
+        <Section title="Ok Dialog" name="okdialog" form={<OkDialog />} />
+        <Section title="Yes No Dialog" name="yesnodialog" form={<YesNoDialog />} />
     </div>
 );

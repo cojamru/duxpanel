@@ -1,11 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import faCaretRight from '@fortawesome/fontawesome-free-solid/faCaretRight';
 import faCaretDown from '@fortawesome/fontawesome-free-solid/faCaretDown';
 
-export class Section extends React.Component {
-    constructor(props) {
+type PropsType = {
+    title: string;
+    form: JSX.Element;
+    name: string;
+};
+type StateType = {
+    collapsed: boolean;
+};
+
+export class Section extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
         this.state = {
             collapsed: true,
@@ -34,16 +42,10 @@ export class Section extends React.Component {
                 </div>
                 {!this.state.collapsed && (
                     <div className="row">
-                        <div className="col">{React.createElement(this.props.form)}</div>
+                        <div className="col">{this.props.form}</div>
                     </div>
                 )}
             </div>
         );
     }
 }
-
-Section.propTypes = {
-    title: PropTypes.string.isRequired,
-    form: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-};

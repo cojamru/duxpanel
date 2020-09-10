@@ -1,10 +1,16 @@
 import React from 'react';
-import DuxDialog from '../../src/DuxDialog';
 import faInfoCircle from '@fortawesome/fontawesome-free-solid/faInfoCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export class Dialog extends React.Component {
-    constructor(props) {
+import DuxDialog from '../../src/DuxDialog';
+
+type PropsType = {};
+type StateType = {
+    isDialogOpen: boolean;
+};
+
+export class Dialog extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
@@ -12,7 +18,7 @@ export class Dialog extends React.Component {
         };
     }
 
-    onDialogButton = label => {
+    onDialogButton = (label: string) => {
         alert(`${label} clicked (default handler)`);
     };
 

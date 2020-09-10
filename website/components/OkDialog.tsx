@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+
 import DuxOkDialog from '../../src/DuxOkDialog';
 
 export const OkDialog: React.FC = () => {
