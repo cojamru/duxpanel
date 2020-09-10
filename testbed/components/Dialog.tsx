@@ -1,5 +1,4 @@
 import React from 'react';
-import faInfoCircle from '@fortawesome/fontawesome-free-solid/faInfoCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import DuxDialog from '../../src/DuxDialog';
@@ -33,7 +32,8 @@ export class Dialog extends React.Component<PropsType, StateType> {
     };
 
     render() {
-        const icon = <FontAwesomeIcon icon={faInfoCircle} className="text-info" style={{ fontSize: 36 }} />;
+        const icon = <FontAwesomeIcon icon="info-circle" className="text-info" style={{ fontSize: 36 }} />;
+
         return (
             <div>
                 <DuxDialog
