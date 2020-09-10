@@ -10,5 +10,6 @@ __test__
 /testbed
 /website
 tsconfig.json
+gulpfile.js
 webpack.*.js
 tsconfig.*.js
