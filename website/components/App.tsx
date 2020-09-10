@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Topic } from './Topic';
 import { NavBar } from './NavBar';
 
@@ -36,7 +37,14 @@ import { ProgressDialog } from './ProgressDialog';
 import ProgressDialogHtml from '../html/ProgressDialog.html';
 import ProgressDialogSource from '../source/ProgressDialog.txt';
 
-const topics = [
+type TopicType = {
+    topic: string;
+    component?: JSX.Element;
+    html: string;
+    source?: string;
+};
+
+const Topics: TopicType[] = [
     {
         topic: 'intro',
         html: IntroHtml,
@@ -47,19 +55,19 @@ const topics = [
     },
     {
         topic: 'basics',
-        component: Basics,
+        component: <Basics />,
         html: BasicsHtml,
         source: BasicsSource,
     },
     {
         topic: 'responsive',
-        component: Responsive,
+        component: <Responsive />,
         html: ResponsiveHtml,
         source: ResponsiveSource,
     },
     {
         topic: 'animation',
-        component: Animation,
+        component: <Animation />,
         html: AnimationHtml,
         source: AnimationSource,
     },
@@ -69,62 +77,50 @@ const topics = [
     },
     {
         topic: 'dialog',
-        component: Dialog,
+        component: <Dialog />,
         html: DialogHtml,
         source: DialogSource,
     },
     {
         topic: 'okdialog',
-        component: OkDialog,
+        component: <OkDialog />,
         html: OkDialogHtml,
         source: OkDialogSource,
     },
     {
         topic: 'yesnodialog',
-        component: YesNoDialog,
+        component: <YesNoDialog />,
         html: YesNoDialogHtml,
         source: YesNoDialogSource,
     },
     {
         topic: 'progressdialog',
-        component: ProgressDialog,
+        component: <ProgressDialog />,
         html: ProgressDialogHtml,
         source: ProgressDialogSource,
     },
 ];
 
-export class App extends React.Component {
-    constructor(props) {
-        super(props);
+export const App: React.FC = () => {
+    const [CurrentTopic, setCurrentTopic] = useState<string>('intro');
 
-        this.state = {
-            currentTopic: 'intro',
-        };
-    }
+    const TopicComponents = Topics.map(topic => {
+        <Topic
+            show={topic.topic === CurrentTopic}
+            key={topic.topic}
+            topic={topic.topic}
+            component={topic.component}
+            source={topic.source}
+            html={topic.html}
+        />;
+    });
 
-    topicClicked = topic => {
-        this.setState({ currentTopic: topic });
-    };
+    const topicClicked = (topic: string) => setCurrentTopic(topic);
 
-    render() {
-        const topicComponents = topics.map(topic => {
-            return (
-                <Topic
-                    show={topic.topic === this.state.currentTopic}
-                    key={topic.topic}
-                    topic={topic.topic}
-                    component={topic.component}
-                    source={topic.source}
-                    html={topic.html}
-                />
-            );
-        });
-
-        return (
-            <div className="container">
-                <NavBar topicClicked={this.topicClicked} />
-                {topicComponents}
-            </div>
-        );
-    }
-}
+    return (
+        <div className="container">
+            <NavBar {...{ topicClicked }} />
+            {TopicComponents}
+        </div>
+    );
+};

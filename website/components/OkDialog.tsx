@@ -1,60 +1,52 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import DuxOkDialog from '../../src/DuxOkDialog';
 
-export class OkDialog extends React.Component {
-    constructor(props) {
-        super(props);
+export const OkDialog: React.FC = () => {
+    const [IsDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+    const [ShowAgreeMsg, setShowAgreeMsg] = useState<boolean>(false);
 
-        this.state = {
-            isDialogOpen: false,
-            showAgreeMsg: false,
-        };
-    }
+    const ShouldCloseRef = useRef<HTMLInputElement>(null);
 
-    onCancel = () => {
-        this.toggleDialog();
+    const toggleDialog = () => {
+        setIsDialogOpen(!IsDialogOpen);
+        setShowAgreeMsg(false);
     };
 
-    onOk = () => {
-        this.toggleDialog();
-    };
+    const onCancel = () => toggleDialog;
+    const onOk = () => toggleDialog;
 
-    shouldClose = () => {
-        if (!this._shouldClose.checked) {
-            this.setState({ showAgreeMsg: true });
+    const shouldClose = (): boolean => {
+        if (ShouldCloseRef.current) {
+            if (!ShouldCloseRef.current.checked) {
+                setShowAgreeMsg(true);
+            }
+
+            return ShouldCloseRef.current.checked;
+        } else {
+            return false;
         }
-        return this._shouldClose.checked;
     };
 
-    toggleDialog = () => {
-        this.setState({
-            isDialogOpen: !this.state.isDialogOpen,
-            showAgreeMsg: false,
-        });
-    };
+    return (
+        <div>
+            <DuxOkDialog
+                show={IsDialogOpen}
+                title="Ok Dialog Title"
+                width={400}
+                showCancel={true}
+                onOk={onOk}
+                onCancel={onCancel}
+                shouldClose={shouldClose}
+                okClassName="btn btn-primary"
+                cancelClassName="btn btn-warning">
+                I Agree: <input type="checkbox" ref={ShouldCloseRef} />
+                <p>Your order is ready to submit.</p>
+                {ShowAgreeMsg && <p className="text-danger">You must agree to the terms</p>}
+            </DuxOkDialog>
 
-    render() {
-        return (
-            <div>
-                <DuxOkDialog
-                    show={this.state.isDialogOpen}
-                    title="Ok Dialog Title"
-                    width={400}
-                    showCancel={true}
-                    onOk={this.onOk}
-                    onCancel={this.onCancel}
-                    shouldClose={this.shouldClose}
-                    okClassName="btn btn-primary"
-                    cancelClassName="btn btn-warning">
-                    I Agree: <input type="checkbox" ref={ref => (this._shouldClose = ref)} />
-                    <p>Your order is ready to submit.</p>
-                    {this.state.showAgreeMsg && <p className="text-danger">You must agree to the terms</p>}
-                </DuxOkDialog>
-
-                <button type="button" className="btn btn-secondary" onClick={this.toggleDialog}>
-                    Open Dialog
-                </button>
-            </div>
-        );
-    }
-}
+            <button type="button" className="btn btn-secondary" onClick={toggleDialog}>
+                Open Dialog
+            </button>
+        </div>
+    );
+};

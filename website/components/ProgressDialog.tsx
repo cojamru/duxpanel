@@ -1,28 +1,41 @@
 import React from 'react';
+
 import DuxProgressDialog from '../../src/DuxProgressDialog';
 import ProgressBarBS4 from '../../src/ProgressBarBS4';
 
-const MyCustomProgressBar = props => (
+const MyCustomProgressBar: React.FC<{ value: number; max: number }> = props => (
     <div>
         At {props.value} out of {props.max} progress
     </div>
 );
 
-export class ProgressDialog extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    isFixedDialogOpen: boolean;
+    isCustomDialogOpen: boolean;
+    isIndeterminateOpen: boolean;
+    isCustomProgressOpen: boolean;
+    fixedProgressValue: number;
+    customProgressValue: number;
+};
+
+export class ProgressDialog extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
             isFixedDialogOpen: false,
+            isCustomDialogOpen: false,
             isIndeterminateOpen: false,
             isCustomProgressOpen: false,
             fixedProgressValue: 0,
             customProgressValue: 0,
         };
-
-        this.progressBarFixed = ProgressBarBS4('progress-bar');
-        this.progressBarIndeterminate = ProgressBarBS4('progress-bar progress-bar-striped progress-bar-animated');
     }
+
+    progressBarFixed = ProgressBarBS4('progress-bar');
+
+    progressBarIndeterminate = ProgressBarBS4('progress-bar progress-bar-striped progress-bar-animated');
 
     onCustomAbort = () => {
         this.setState({

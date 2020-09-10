@@ -3,8 +3,18 @@ import DuxPanel from '../../src/DuxPanel';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { agate } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-export class Animation extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    topPanelVisible: boolean;
+    rightPanelVisible: boolean;
+    bottomPanelVisible: boolean;
+    leftPanelVisible: boolean;
+    animPanelVisible: boolean;
+    animFrame: number;
+};
+
+export class Animation extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {

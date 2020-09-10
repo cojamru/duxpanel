@@ -2,7 +2,15 @@ import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { agate } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-export const Topic = props => {
+type PropsType = {
+    show: boolean;
+    topic: string;
+    html: string;
+    component?: JSX.Element;
+    source?: string;
+};
+
+export const Topic: React.FC<PropsType> = props => {
     if (!props.show) {
         return null;
     }
@@ -12,7 +20,7 @@ export const Topic = props => {
             {props.html && <div dangerouslySetInnerHTML={{ __html: props.html }} />}
             {props.component && (
                 <div className="row">
-                    <div className="col">{React.createElement(props.component)}</div>
+                    <div className="col">{props.component}</div>
                 </div>
             )}
             {props.source && (

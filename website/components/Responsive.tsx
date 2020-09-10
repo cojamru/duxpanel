@@ -1,8 +1,15 @@
 import React from 'react';
+
 import DuxPanel from '../../src/DuxPanel';
 
-export class Responsive extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    isProportionalOpen: boolean;
+    isBreakpointOpen: boolean;
+};
+
+export class Responsive extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = { isProportionalOpen: false, isBreakpointOpen: false };

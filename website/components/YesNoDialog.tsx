@@ -1,8 +1,13 @@
 import React from 'react';
 import DuxYesNoDialog from '../../src/DuxYesNoDialog';
 
-export class YesNoDialog extends React.Component {
-    constructor(props) {
+type PropsType = {};
+type StateType = {
+    isDialogOpen: boolean;
+};
+
+export class YesNoDialog extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {

@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const NavBar = props => {
+type PropsType = {
+    topicClicked: (topic: string) => void;
+};
+
+export const NavBar: React.FC<PropsType> = ({ topicClicked }) => {
     return (
         <nav className="navbar navbar-dark navbar-expand-lg">
             <a className="navbar-brand" href="#">
@@ -19,7 +22,7 @@ export const NavBar = props => {
                             href="#"
                             onClick={e => {
                                 e.preventDefault();
-                                props.topicClicked('intro');
+                                topicClicked('intro');
                             }}>
                             Welcome
                         </a>
@@ -30,7 +33,7 @@ export const NavBar = props => {
                             href="#"
                             onClick={e => {
                                 e.preventDefault();
-                                props.topicClicked('gettingstarted');
+                                topicClicked('gettingstarted');
                             }}>
                             Getting Started
                         </a>
@@ -41,7 +44,7 @@ export const NavBar = props => {
                             href="#"
                             onClick={e => {
                                 e.preventDefault();
-                                props.topicClicked('basics');
+                                topicClicked('basics');
                             }}>
                             DuxPanel Basics
                         </a>
@@ -62,7 +65,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('responsive');
+                                    topicClicked('responsive');
                                 }}>
                                 Responsive Panels
                             </a>
@@ -71,7 +74,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('animation');
+                                    topicClicked('animation');
                                 }}>
                                 Panel Animation
                             </a>
@@ -80,7 +83,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('dialog');
+                                    topicClicked('dialog');
                                 }}>
                                 DuxDialog
                             </a>
@@ -89,7 +92,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('okdialog');
+                                    topicClicked('okdialog');
                                 }}>
                                 Ok Dialog
                             </a>
@@ -98,7 +101,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('yesnodialog');
+                                    topicClicked('yesnodialog');
                                 }}>
                                 Yes / No Dialog
                             </a>
@@ -107,7 +110,7 @@ export const NavBar = props => {
                                 href="#"
                                 onClick={e => {
                                     e.preventDefault();
-                                    props.topicClicked('progressdialog');
+                                    topicClicked('progressdialog');
                                 }}>
                                 Progress Dialog
                             </a>
@@ -119,7 +122,7 @@ export const NavBar = props => {
                             href="#"
                             onClick={e => {
                                 e.preventDefault();
-                                props.topicClicked('reference');
+                                topicClicked('reference');
                             }}>
                             Reference
                         </a>
@@ -128,8 +131,4 @@ export const NavBar = props => {
             </div>
         </nav>
     );
-};
-
-NavBar.propTypes = {
-    topicClicked: PropTypes.func.isRequired,
 };
