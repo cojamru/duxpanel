@@ -1,9 +1,9 @@
-const DuxDialog = require('./lib/DuxDialog');
-const DuxOkDialog = require('./lib/DuxOkDialog');
-const DuxPanel = require('./lib/DuxPanel');
-const DuxProgressDialog = require('./lib/DuxProgressDialog');
-const DuxYesNoDialog = require('./lib/DuxYesNoDialog');
-const ProgressBarBS4 = require('./lib/ProgressBarBS4');
+const DuxDialog = require('./lib/DuxDialog').default;
+const DuxOkDialog = require('./lib/DuxOkDialog').default;
+const DuxPanel = require('./lib/DuxPanel').default;
+const DuxProgressDialog = require('./lib/DuxProgressDialog').default;
+const DuxYesNoDialog = require('./lib/DuxYesNoDialog').default;
+const ProgressBarBS4 = require('./lib/ProgressBarBS4').default;
 
 module.exports = {
     DuxDialog: DuxDialog,
