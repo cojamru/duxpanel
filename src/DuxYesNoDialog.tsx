@@ -3,7 +3,6 @@ import React from 'react';
 import DuxDialog from './DuxDialog';
 
 type DuxYesNoDialogPropsType = {
-    children: JSX.Element | JSX.Element[] | string;
     show: boolean;
     title: string;
     yesClassName: string;
