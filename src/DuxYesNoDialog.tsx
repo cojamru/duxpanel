@@ -1,9 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import DuxDialog from './DuxDialog';
 
-const DuxYesNoDialog = props => {
+type DuxYesNoDialogPropsType = {
+    children: JSX.Element | JSX.Element[] | string;
+    show: boolean;
+    title: string;
+    yesClassName: string;
+    noClassName: string;
+    onYes: () => void;
+    onNo: () => void;
+};
+
+const DuxYesNoDialog: React.FC<DuxYesNoDialogPropsType> = props => {
     let buttons = [
         {
             label: 'Yes',
@@ -22,19 +31,6 @@ const DuxYesNoDialog = props => {
             {props.children}
         </DuxDialog>
     );
-};
-
-DuxYesNoDialog.propTypes = {
-    ...DuxDialog.propTypes,
-    onYes: PropTypes.func.isRequired,
-    onNo: PropTypes.func.isRequired,
-    yesClassName: PropTypes.string,
-    noClassName: PropTypes.string,
-};
-
-DuxYesNoDialog.defaultProps = {
-    yesClassName: '',
-    noClassName: '',
 };
 
 export default DuxYesNoDialog;
