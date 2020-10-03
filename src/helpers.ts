@@ -5,8 +5,10 @@
  * @param props
  * @returns {string}
  */
-export const getAnimationNameHide = props => {
+
+export const getAnimationNameHide = (props: { slideOutTo: string; fadeOut: boolean }): string => {
     let name = '';
+
     if (props.slideOutTo) {
         switch (props.slideOutTo) {
             case 'top':
@@ -36,8 +38,10 @@ export const getAnimationNameHide = props => {
  * @param props
  * @returns {string}
  */
-export const getAnimationNameShow = props => {
+
+export const getAnimationNameShow = (props: { slideInFrom: string; fadeIn: boolean }): string => {
     let name = '';
+
     if (props.slideInFrom) {
         switch (props.slideInFrom) {
             case 'top':
@@ -66,36 +70,26 @@ export const getAnimationNameShow = props => {
  * @param elem
  * @returns {{top: number, left: number}}
  */
-const getElementOffset = elem => {
+
+export const getElementOffset = (elem: HTMLElement): { top: number; left: number } => {
     if (elem === null || elem === undefined) {
         return { top: 0, left: 0 };
     }
 
     const rect = elem.getBoundingClientRect();
     const win = elem.ownerDocument.defaultView;
+
+    if (win === null || win === undefined) {
+        return { top: 0, left: 0 };
+    }
+
     return {
         top: rect.top + win.pageYOffset,
         left: rect.left - win.pageXOffset,
     };
 };
 
-/**
- * Gets the relative position of the element.
- *
- * @param elem
- * @returns {{top: number, left: number}}
- */
-export const getElementPosition = elem => {
-    const elemOffset = getElementOffset(elem);
-    const parentOffset = getElementOffset(elem.offsetParent);
-
-    return {
-        top: elemOffset.top,
-        left: elemOffset.left,
-    };
-};
-
-export const isInsideRect = (x, y, left, top, width, height) => {
+export const isInsideRect = (x: number, y: number, left: number, top: number, width: number, height: number) => {
     return x >= left && y >= top && x <= left + width && y <= top + height;
 };
 
@@ -104,7 +98,8 @@ export const isInsideRect = (x, y, left, top, width, height) => {
  * @param value
  * @returns {boolean}
  */
-const isNumberStr = value => {
+
+const isNumberStr = (value: any): boolean => {
     if (typeof value === 'string') {
         return value.indexOf('px') !== -1 || !isNaN(parseInt(value));
     }
@@ -117,11 +112,12 @@ const isNumberStr = value => {
  * @param value
  * @returns {boolean}
  */
-const isPercentStr = value => {
+
+const isPercentStr = (value: any): boolean => {
     return typeof value === 'string' && value.indexOf('%') !== -1;
 };
 
-export const numberStrToNumber = value => {
+export const numberStrToNumber = (value: any): number => {
     return Math.round(parseFloat(value.replace(/[^0-9.]/g, '')));
 };
 
@@ -133,7 +129,8 @@ export const numberStrToNumber = value => {
  * @param ref
  * @returns {number}
  */
-export const percentStrToPixels = (str, ref) => {
+
+export const percentStrToPixels = (str: string, ref: number): number => {
     const pct = parseFloat(str.replace(/[^0-9.]/g, '')) / 100.0;
     return Math.round(ref * pct);
 };
@@ -145,7 +142,8 @@ export const percentStrToPixels = (str, ref) => {
  * @param refDim
  * @returns {number}
  */
-export const dimensionToPixels = (dimension, refDim) => {
+
+export const dimensionToPixels = (dimension: any, refDim: number): number => {
     if (typeof dimension === 'number') {
         // actual pixels
         return Math.round(dimension);
@@ -184,7 +182,8 @@ export const dimensionToPixels = (dimension, refDim) => {
  * @param prop - value passed as property for left, top, width, or height
  * @param refDim - reference dimension (viewport height for top and height, viewport width for left and width)
  */
-export const propToPixels = (prop, refDim) => {
+
+export const propToPixels = (prop: any, refDim: number) => {
     if (typeof prop !== 'object') {
         return dimensionToPixels(prop, refDim);
     }

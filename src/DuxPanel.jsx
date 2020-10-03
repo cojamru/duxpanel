@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getAnimationNameHide, getAnimationNameShow, getElementPosition, isInsideRect, propToPixels } from './helpers';
+import { getAnimationNameHide, getAnimationNameShow, getElementOffset, isInsideRect, propToPixels } from './helpers';
 import throttle from 'lodash.throttle';
 
 class DuxPanel extends React.Component {
@@ -90,7 +90,7 @@ class DuxPanel extends React.Component {
 
         if (this._header) {
             const headerRect = this._header.getBoundingClientRect();
-            let curPos = getElementPosition(this._panel);
+            let curPos = getElementOffset(this._panel);
             if (isInsideRect(x, y, curPos.left, curPos.top, headerRect.width, headerRect.height)) {
                 this.btnDown = true;
             }
@@ -116,7 +116,7 @@ class DuxPanel extends React.Component {
                     // Remember the mouse's relative position inside the
                     // panel.  As the panel is being dragged, the panel's
                     // top-left position is determined based on this offset.
-                    let curPos = getElementPosition(this._panel);
+                    let curPos = getElementOffset(this._panel);
                     this.pos.offsetX = x - curPos.left;
                     this.pos.offsetY = y - curPos.top;
                 }
