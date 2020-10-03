@@ -14,7 +14,7 @@ gulp.task('clean-dist', () => pipe([gulp.src('lib', { read: false, allowEmpty: t
 
 gulp.task('build-js', () =>
     pipe([
-        gulp.src(['src/**/*.js', 'src/**/*.jsx']),
+        gulp.src(['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx']),
         sourceMaps.init(),
         tsProject(),
         terser(),
