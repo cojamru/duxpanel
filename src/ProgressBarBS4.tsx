@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ProgressBarBS4 = className => props => {
+const ProgressBarBS4 = (className: string) => (props: { value: number; min: number; max: number }) => {
     return (
         <div className="progress">
             <div
@@ -12,12 +11,6 @@ const ProgressBarBS4 = className => props => {
                 aria-valuemax={props.max}></div>
         </div>
     );
-};
-
-ProgressBarBS4.propTypes = {
-    min: PropTypes.number,
-    max: PropTypes.number,
-    value: PropTypes.number,
 };
 
 export default ProgressBarBS4;
