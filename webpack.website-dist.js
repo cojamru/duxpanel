@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -24,7 +24,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'duxpanel.css',
         }),
-        new OptimizeCSSAssetsPlugin({}),
         new CopyWebpackPlugin({
             patterns: [
                 { from: './website/build/index.html', flatten: true },
@@ -36,7 +35,7 @@ module.exports = {
     optimization: {
         usedExports: true,
         minimize: true,
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
     module: {
         rules: [
