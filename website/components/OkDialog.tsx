@@ -13,8 +13,8 @@ export const OkDialog: React.FC = () => {
         setShowAgreeMsg(false);
     };
 
-    const onCancel = () => toggleDialog;
-    const onOk = () => toggleDialog;
+    const onCancel = () => toggleDialog();
+    const onOk = () => toggleDialog();
 
     const shouldClose = (): boolean => {
         if (ShouldCloseRef.current) {
