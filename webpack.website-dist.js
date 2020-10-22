@@ -13,7 +13,7 @@ module.exports = {
     mode: 'production',
     output: {
         path: OutputPath,
-        filename: '[name].bundle.js',
+        filename: 'bundle.js',
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -44,9 +44,6 @@ module.exports = {
         usedExports: true,
         minimize: true,
         minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
-        splitChunks: {
-            chunks: 'all',
-        },
     },
     module: {
         rules: [
