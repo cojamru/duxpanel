@@ -226,10 +226,9 @@ class DuxPanel extends React.Component {
         // Find this panel's position on the stack to determine the zIndex
         // value to cover panels at lower stack positions
         let panelDepth = 0;
-        for (let i = 0; i < DuxPanel.panelStack.length; i++) {
-            if (DuxPanel.panelStack[i] === this.timestamp) {
-                panelDepth = i + 1;
-            }
+        let panelsInDOM = document.querySelectorAll('.duxpanel');
+        for (let i = 0; i < panelsInDOM.length; i++) {
+            panelDepth = i + 1;
         }
 
         const panelStyle = {
@@ -262,7 +261,11 @@ class DuxPanel extends React.Component {
                 {this.props.modal && (
                     <div className="duxpanel-backdrop" style={backdropStyle} onClick={this.props.clickToDismiss ? this.onBackdropClick : null}></div>
                 )}
-                <div className={`duxpanel ${this.props.className ? this.props.className : ''}`} style={panelStyle} ref={this.panelRef}>
+                <div
+                    className={`duxpanel ${this.props.className ? this.props.className : ''}`}
+                    style={panelStyle}
+                    ref={this.panelRef}
+                    data-duxpanel-id={panelsInDOM.length}>
                     {this.props.title && (
                         <div
                             ref={ref => {
