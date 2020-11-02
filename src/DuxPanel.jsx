@@ -262,7 +262,7 @@ class DuxPanel extends React.Component {
                 {this.props.modal && (
                     <div className="duxpanel-backdrop" style={backdropStyle} onClick={this.props.clickToDismiss ? this.onBackdropClick : null}></div>
                 )}
-                <div className="duxpanel" style={panelStyle} ref={this.panelRef}>
+                <div className={`duxpanel ${this.props.className ? this.props.className : ''}`} style={panelStyle} ref={this.panelRef}>
                     {this.props.title && (
                         <div
                             ref={ref => {
@@ -290,6 +290,7 @@ DuxPanel.propTypes = {
     top: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+    className: PropTypes.string,
     onClose: PropTypes.func,
     show: PropTypes.bool,
     allowClose: PropTypes.bool,
@@ -312,6 +313,7 @@ DuxPanel.propTypes = {
 DuxPanel.panelStack = [];
 
 DuxPanel.defaultProps = {
+    className: '',
     modal: true,
     center: true,
     allowDrag: true,
