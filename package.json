@@ -1,7 +1,7 @@
 {
     "name": "@cojam/duxpanel",
     "author": "Ken Schenke",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "React JS Draggable Panels, Dialogs, and Modals",
     "homepage": "https://cojamru.github.io/duxpanel/",
     "license": "MIT",
